@@ -4,32 +4,10 @@
 #include <iostream>
 
 ScriptFile::ScriptFile(const char* name, const Date& creationDate, const Date& modificationDate)
-        : File(name, creationDate, modificationDate) {
-    content = new char[1];
-    content[0] = '\0';
-}
+        : File(name, creationDate, modificationDate) {}
 
 ScriptFile::ScriptFile(const char* name)
-        : File(name) {
-    content = new char[1];
-    content[0] = '\0';
-}
-
-void ScriptFile::setContent(const char* newContent) {
-    delete[] content;
-    size_t length = 0;
-    while (newContent[length] != '\0') {
-        ++length;
-    }
-    content = new char[length + 1];
-    for (size_t i = 0; i <= length; ++i) {
-        content[i] = newContent[i];
-    }
-}
-
-const char* ScriptFile::getContent() const {
-    return content;
-}
+        : File(name) {}
 
 void ScriptFile::execute() const {
     char* commandBuffer = new char[std::strlen(content) + 1];
