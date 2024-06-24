@@ -18,6 +18,7 @@ public:
     bool makeDirectory(const char* name);
     bool createTextFile(const char* name);
     bool createScriptFile(const char* name);
+    bool createLinkFile(const char* name);
     bool removeFile(const char* path);
     bool removeDirectory(const char* path);
     void executeFile(const char* path);

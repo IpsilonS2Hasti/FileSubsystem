@@ -16,31 +16,17 @@ LinkFile* LinkFile::clone() const {
 }
 
 void LinkFile::execute() const {
-    FileSystem fs;
-    char resolvedPath[256];
-
-    if (content[0] == '/') {
-        // Absolute path
-        std::strcpy(resolvedPath, content);
-    } else {
-        // Relative path
-        std::strcpy(resolvedPath, getPath());
-        char* lastSlash = std::strrchr(resolvedPath, '/');
-        if (lastSlash != nullptr) {
-            lastSlash[1] = '\0';
-        }
-        std::strcat(resolvedPath, content);
+    if (std::strlen(content) == 0) {
+        std::cerr << "Link target is empty" << std::endl;
+        return;
     }
 
-    FSEntity* targetEntity = fs.findEntityByName(resolvedPath);
-    if (targetEntity) {
-        File* targetFile = dynamic_cast<File*>(targetEntity);
-        if (targetFile) {
-            targetFile->execute();
-        } else {
-            std::cerr << "Target is not an executable file" << std::endl;
-        }
-    } else {
-        std::cerr << "Target file not found: " << resolvedPath << std::endl;
+    char command[256];
+    std::strcpy(command, "exec ");
+    std::strcat(command, content);
+
+    int result = system(command);
+    if (result == -1) {
+        std::cerr << "Failed to execute command: " << command << std::endl;
     }
 }

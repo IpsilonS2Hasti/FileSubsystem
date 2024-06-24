@@ -1,5 +1,6 @@
 #include "FileSystem.h"
 #include "ScriptFile.h"
+#include "LinkFile.h"
 #include <iostream>
 #include <cstring>
 
@@ -117,6 +118,21 @@ bool FileSystem::createScriptFile(const char* name) {
     currentDir->add(newFile);
     return true;
 }
+
+bool FileSystem::createLinkFile(const char* name) {
+    for (size_t i = 0; i < currentDir->childrenCount; ++i) {
+        if (std::strcmp(currentDir->children[i]->getName(), name) == 0) {
+            currentDir->children[i]->setModificationDate(Date());
+            return true;
+        }
+    }
+
+    Date currentDate;
+    LinkFile* newFile = new LinkFile(name, currentDate, currentDate);
+    currentDir->add(newFile);
+    return true;
+}
+
 
 bool FileSystem::removeFile(const char* path) {
     for (size_t i = 0; i < currentDir->childrenCount; ++i) {

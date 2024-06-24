@@ -43,13 +43,15 @@ void CommandLoop::processCommand(const char* command) {
                 if (!fileSystem.createScriptFile(name)) {
                     std::cerr << "Script file creation failed" << std::endl;
                 }
+            } else if (std::strstr(name, ".lnk") != nullptr) {
+                if (!fileSystem.createLinkFile(name)) {
+                    std::cerr << "Link file creation failed" << std::endl;
+                }
             } else {
                 if (!fileSystem.createTextFile(name)) {
                     std::cerr << "File creation failed" << std::endl;
                 }
             }
-        } else {
-            std::cerr << "Usage: touch <file name>" << std::endl;
         }
     } else if (std::strcmp(cmd, "rm") == 0) {
         char* path = std::strtok(nullptr, " ");
@@ -87,10 +89,9 @@ void CommandLoop::processCommand(const char* command) {
             }
 
             if (op) {
-                *op = '\0'; // Split the string at the operator
-                op += append ? 4 : 3; // Move past the operator
+                *op = '\0';
+                op += append ? 4 : 3;
 
-                // Trim leading spaces from the file path
                 while (*op == ' ') op++;
 
                 if (*op) {
