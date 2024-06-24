@@ -103,6 +103,12 @@ build CMakeFiles/FileSubsystem.dir/ScriptFile.cpp.o: CXX_COMPILER__FileSubsystem
   OBJECT_DIR = CMakeFiles/FileSubsystem.dir
   OBJECT_FILE_DIR = CMakeFiles/FileSubsystem.dir
 
+build CMakeFiles/FileSubsystem.dir/LinkFile.cpp.o: CXX_COMPILER__FileSubsystem_unscanned_Debug /Users/admin/CLionProjects/FileSubsystem/LinkFile.cpp || cmake_object_order_depends_target_FileSubsystem
+  DEP_FILE = CMakeFiles/FileSubsystem.dir/LinkFile.cpp.o.d
+  FLAGS = -g -std=gnu++17 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk -fcolor-diagnostics
+  OBJECT_DIR = CMakeFiles/FileSubsystem.dir
+  OBJECT_FILE_DIR = CMakeFiles/FileSubsystem.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target FileSubsystem
@@ -111,7 +117,7 @@ build CMakeFiles/FileSubsystem.dir/ScriptFile.cpp.o: CXX_COMPILER__FileSubsystem
 #############################################
 # Link the executable FileSubsystem
 
-build FileSubsystem: CXX_EXECUTABLE_LINKER__FileSubsystem_Debug CMakeFiles/FileSubsystem.dir/main.cpp.o CMakeFiles/FileSubsystem.dir/Date.cpp.o CMakeFiles/FileSubsystem.dir/FSEntity.cpp.o CMakeFiles/FileSubsystem.dir/Directory.cpp.o CMakeFiles/FileSubsystem.dir/File.cpp.o CMakeFiles/FileSubsystem.dir/TextFile.cpp.o CMakeFiles/FileSubsystem.dir/FileSystem.cpp.o CMakeFiles/FileSubsystem.dir/CommandLoop.cpp.o CMakeFiles/FileSubsystem.dir/ScriptFile.cpp.o
+build FileSubsystem: CXX_EXECUTABLE_LINKER__FileSubsystem_Debug CMakeFiles/FileSubsystem.dir/main.cpp.o CMakeFiles/FileSubsystem.dir/Date.cpp.o CMakeFiles/FileSubsystem.dir/FSEntity.cpp.o CMakeFiles/FileSubsystem.dir/Directory.cpp.o CMakeFiles/FileSubsystem.dir/File.cpp.o CMakeFiles/FileSubsystem.dir/TextFile.cpp.o CMakeFiles/FileSubsystem.dir/FileSystem.cpp.o CMakeFiles/FileSubsystem.dir/CommandLoop.cpp.o CMakeFiles/FileSubsystem.dir/ScriptFile.cpp.o CMakeFiles/FileSubsystem.dir/LinkFile.cpp.o
   FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.0.sdk
   OBJECT_DIR = CMakeFiles/FileSubsystem.dir
   POST_BUILD = :

@@ -77,26 +77,29 @@ void CommandLoop::processCommand(const char* command) {
             std::cerr << "Usage: exec <file path>" << std::endl;
         }
     } else if (std::strcmp(cmd, "echo") == 0) {
-        char* text = std::strtok(nullptr, " ");
+        char* text = std::strtok(nullptr, "");
         if (text) {
-            char* op = std::strtok(nullptr, " ");
-            char* filePath = std::strtok(nullptr, " ");
-            if (op == nullptr) {
-                fileSystem.echo(text);
-            } else if (std::strcmp(op, ">") == 0) {
-                if (filePath) {
-                    fileSystem.echo(text, filePath, false);
+            char* op = std::strstr(text, " > ");
+            bool append = false;
+            if (!op) {
+                op = std::strstr(text, " >> ");
+                append = true;
+            }
+
+            if (op) {
+                *op = '\0'; // Split the string at the operator
+                op += append ? 4 : 3; // Move past the operator
+
+                // Trim leading spaces from the file path
+                while (*op == ' ') op++;
+
+                if (*op) {
+                    fileSystem.echo(text, op, append);
                 } else {
-                    std::cerr << "Usage: echo <text> > <file>" << std::endl;
-                }
-            } else if (std::strcmp(op, ">>") == 0) {
-                if (filePath) {
-                    fileSystem.echo(text, filePath, true);
-                } else {
-                    std::cerr << "Usage: echo <text> >> <file>" << std::endl;
+                    std::cerr << "Usage: echo <text> [> <file> | >> <file>]" << std::endl;
                 }
             } else {
-                std::cerr << "Invalid echo operation" << std::endl;
+                fileSystem.echo(text);
             }
         } else {
             std::cerr << "Usage: echo <text> [> <file> | >> <file>]" << std::endl;

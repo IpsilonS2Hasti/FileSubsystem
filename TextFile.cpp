@@ -13,5 +13,5 @@ TextFile *TextFile::clone() const {
 
 void TextFile::execute() const {
     std::cout << "Reading file: " << name << std::endl;
-    std::cout << "Content: " << (content ? content : "No content") << std::endl;
+    std::cout << "Content: " << std::endl << (content ? content : "No content") << std::endl;
 }

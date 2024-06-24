@@ -20,4 +20,6 @@ add_executable(FileSubsystem main.cpp
         CommandLoop.h
         ScriptFile.cpp
         ScriptFile.h
+        LinkFile.cpp
+        LinkFile.h
 )
